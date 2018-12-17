@@ -3,7 +3,7 @@
 const Env = use('Env')
 
 module.exports = {
-  /*
+	/*
   |--------------------------------------------------------------------------
   | Authenticator
   |--------------------------------------------------------------------------
@@ -15,9 +15,9 @@ module.exports = {
   | Available Serializers - lucid, database
   |
   */
-  authenticator: 'jwt',
+	authenticator: 'jwt',
 
-  /*
+	/*
   |--------------------------------------------------------------------------
   | Session
   |--------------------------------------------------------------------------
@@ -26,15 +26,15 @@ module.exports = {
   | Session authentication is always persistent.
   |
   */
-  session: {
-    serializer: 'LucidMongo',
-    model: 'App/Models/User',
-    scheme: 'session',
-    uid: 'email',
-    password: 'password'
-  },
+	session: {
+		serializer: 'LucidMongo',
+		model: 'App/Models/User',
+		scheme: 'session',
+		uid: 'email',
+		password: 'password'
+	},
 
-  /*
+	/*
   |--------------------------------------------------------------------------
   | Basic Auth
   |--------------------------------------------------------------------------
@@ -47,15 +47,15 @@ module.exports = {
   | login credentials on each request.
   |
   */
-  basic: {
-    serializer: 'LucidMongo',
-    model: 'App/Models/User',
-    scheme: 'basic',
-    uid: 'email',
-    password: 'password'
-  },
+	basic: {
+		serializer: 'LucidMongo',
+		model: 'App/Models/User',
+		scheme: 'basic',
+		uid: 'email',
+		password: 'password'
+	},
 
-  /*
+	/*
   |--------------------------------------------------------------------------
   | Jwt
   |--------------------------------------------------------------------------
@@ -64,22 +64,22 @@ module.exports = {
   | via HTTP `Authorization` header.
   |
   */
-  jwt: {
-    serializer: 'LucidMongo',
-    model: 'App/Models/User',
-    scheme: 'jwt',
-    uid: 'email',
-    password: 'password',
-    options: { secret: Env.get('APP_KEY') }
-  },
+	jwt: {
+		serializer: 'LucidMongo',
+		model: 'App/Models/User',
+		scheme: 'jwt',
+		uid: 'email',
+		password: 'password',
+		options: { secret: Env.get('APP_KEY') }
+	},
 
-  api: {
-    serializer: 'LucidMongo',
-    scheme: 'api',
-    model: 'App/Models/User',
-    token: 'App/Models/Token',
-    uid: 'username',
-    password: '',
-    expiry: '30d'
-  }
+	api: {
+		serializer: 'LucidMongo',
+		scheme: 'api',
+		model: 'App/Models/User',
+		token: 'App/Models/Token',
+		uid: 'username',
+		password: '',
+		expiry: '30d'
+	}
 }

@@ -14,7 +14,7 @@ const UserHook = module.exports = {}
  * @return {void}
  */
 UserHook.hashPassword = async userInstance => {
-  if (userInstance.password) {
-    userInstance.password = await Hash.make(userInstance.password)
-  }
+	if (userInstance.password) {
+		userInstance.password = await Hash.make(userInstance.password)
+	}
 }

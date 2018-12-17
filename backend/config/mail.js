@@ -3,7 +3,7 @@
 const Env = use('Env')
 
 module.exports = {
-  /*
+	/*
   |--------------------------------------------------------------------------
   | Connection
   |--------------------------------------------------------------------------
@@ -12,9 +12,9 @@ module.exports = {
   | define a driver too.
   |
   */
-  connection: Env.get('MAIL_CONNECTION', 'smtp'),
+	connection: Env.get('MAIL_CONNECTION', 'smtp'),
 
-  /*
+	/*
   |--------------------------------------------------------------------------
   | SMTP
   |--------------------------------------------------------------------------
@@ -22,22 +22,22 @@ module.exports = {
   | Here we define configuration for sending emails via SMTP.
   |
   */
-  smtp: {
-    driver: 'smtp',
-    pool: true,
-    port: 2525,
-    host: Env.get('MAIL_SERVER'),
-    secure: false,
-    auth: {
-      user: Env.get('MAIL_USERNAME'),
-      pass: Env.get('MAIL_PASSWORD')
-    },
-    maxConnections: 10,
-    maxMessages: 1000,
-    rateLimit: 100
-  },
+	smtp: {
+		driver: 'smtp',
+		pool: true,
+		port: 2525,
+		host: Env.get('MAIL_SERVER'),
+		secure: false,
+		auth: {
+			user: Env.get('MAIL_USERNAME'),
+			pass: Env.get('MAIL_PASSWORD')
+		},
+		maxConnections: 10,
+		maxMessages: 1000,
+		rateLimit: 100
+	},
 
-  /*
+	/*
   |--------------------------------------------------------------------------
   | SparkPost
   |--------------------------------------------------------------------------
@@ -53,13 +53,13 @@ module.exports = {
   | }
   |
   */
-  sparkpost: {
-    driver: 'sparkpost',
-    apiKey: Env.get('SPARKPOST_API_KEY'),
-    extras: {}
-  },
+	sparkpost: {
+		driver: 'sparkpost',
+		apiKey: Env.get('SPARKPOST_API_KEY'),
+		extras: {}
+	},
 
-  /*
+	/*
   |--------------------------------------------------------------------------
   | Mailgun
   |--------------------------------------------------------------------------
@@ -76,10 +76,10 @@ module.exports = {
   | }
   |
   */
-  mailgun: {
-    driver: 'mailgun',
-    domain: Env.get('MAILGUN_DOMAIN'),
-    apiKey: Env.get('MAILGUN_API_KEY'),
-    extras: {}
-  }
+	mailgun: {
+		driver: 'mailgun',
+		domain: Env.get('MAILGUN_DOMAIN'),
+		apiKey: Env.get('MAILGUN_API_KEY'),
+		extras: {}
+	}
 }
