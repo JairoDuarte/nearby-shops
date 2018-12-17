@@ -1,0 +1,41 @@
+{
+  "name": "shops",
+  "version": "0.0.1",
+  "adonis-version": "4.1.0",
+  "description": "shops API server",
+  "scripts": {
+    "start": "nodemon server.js",
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "eslint '**/*.js' --fix",
+    "test": "node ace test"
+  },
+  "author": "Jairo Duarte",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@adonisjs/ace": "^5.0.1",
+    "@adonisjs/ally": "^2.0.2",
+    "@adonisjs/auth": "^3.0.4",
+    "@adonisjs/bodyparser": "^2.0.2",
+    "@adonisjs/cors": "^1.0.5",
+    "@adonisjs/drive": "^1.0.2",
+    "@adonisjs/fold": "^4.0.7",
+    "@adonisjs/framework": "^5.0.5",
+    "@adonisjs/ignitor": "^2.0.6",
+    "@adonisjs/lucid": "^5.0.3",
+    "@adonisjs/mail": "^3.0.5",
+    "@adonisjs/validator": "^5.0.3",
+    "@adonisjs/vow": "^1.0.15",
+    "cloudinary": "^1.11.0",
+    "lucid-mongo": "^3.0.0",
+    "nanoid": "^1.0.7"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0"
+  },
+  "autoload": {
+    "App": "./app"
+  }
+}
