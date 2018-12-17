@@ -8,7 +8,6 @@ class User extends Model {
   static get deleteTimestamp () { return 'deletedAt' }
   static boot () {
     super.boot()
-
     /**
      * A hook to hash the user password before saving
      * it to the database.
@@ -18,11 +17,18 @@ class User extends Model {
      */
     this.addHook('beforeCreate', 'User.hashPassword')
   }
+  /**
+     * 
+     * Array the Shops liked by user
+     */
   likesShops () {
-    return this.hasMany('App/Models/Evento', '_id', 'organizadorId')
+    return this.embedsMany('App/Models/Shop', '', 'likesShops')
   }
+  /**
+     * Array the Shops disliked by user
+     */
   dislikesShops () {
-    return this.hasMany('App/Models/Evento', '_id', 'organizadorId')
+    return this.embedsMany('App/Models/Shop', '', 'dislikesShops')
   }
   
   static get hidden () {
