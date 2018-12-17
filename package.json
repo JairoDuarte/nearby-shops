@@ -1,0 +1,20 @@
+{
+  "name": "shops",
+  "version": "0.0.1",
+  "description": "coding challenge United Remote",
+  "scripts": {
+    "server": "cd server && ../node_modules/.bin/nodemon --exec npm start",
+    "client": "cd client && npm start",
+    "test": "cd server && npm test",
+    "start": "concurrently -c \"black.bgWhite,cyan,gray.dim\" \"cd server && npm start\" \"cd client && npm start\" ",
+    "dev": "concurrently -c \"black.bgWhite,cyan,gray.dim\" \" npm run server\" \" npm run client\" ",
+    "installdep": "concurrently -c \"black.bgWhite,cyan,gray.dim\" \"cd server && npm install --silent --progress=false\" \"cd client && npm install --silent --progress=false\" ",
+    "clean": "concurrently -c \"black.bgWhite,cyan,gray.dim\" \"cd server && npm run clean --silent --progress=false\" \"cd client && npm run clean --silent --progress=false\" "
+  },
+  "author": "Jairo Duarte",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.17.2"
+  }
+}
