@@ -9,6 +9,7 @@
   },
   "author": "Jairo Duarte",
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.11",
     "flatpickr": "^4.5.1",
     "nouislider": "^11.1.0",
@@ -16,7 +17,8 @@
     "vue-flatpickr-component": "^7.0.4",
     "vue-lazyload": "^1.2.6",
     "vue-router": "^3.0.1",
-    "vue2-transitions": "^0.2.3"
+    "vue2-transitions": "^0.2.3",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.10",
