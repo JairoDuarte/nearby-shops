@@ -1,8 +1,9 @@
 <template>
+
 <base-nav  type="primary" effect="dark"
                   expand
                   title="Nearby Shops"
-                  class="mt-4"
+                  class=""
                   :content-id="`navbar-${menu.type}`"
                   @title-click="titleclick">
       <ul class="navbar-nav ml-lg-auto">
