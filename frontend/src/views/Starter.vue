@@ -7,8 +7,6 @@
             <span></span>
             <span></span>
             <span></span>
-            <span></span>
-            <span></span>
         </div>
         <div class="container pt-lg-md">
             <div class="row justify-content-center">
@@ -78,14 +76,5 @@
 export default {};
 </script>
 <style>
-.section {
-  height: 100%;  
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-#main {
-    height: 100vh;
-}
+
 </style>
