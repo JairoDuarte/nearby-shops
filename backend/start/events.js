@@ -7,7 +7,7 @@ Event.on('new::user', async user => {
 		await Mail.send('emails.verification', { user }, message => {
 			message.to(user.email)
 			message.from(Env.get('MAIL_SENDER'))
-			message.subject('Nearby Shops Please Verify Your Email Address')
+			message.subject('Nearby Shops -  Welcome')
 		})
 	} catch (error) {
 		console.log(error)

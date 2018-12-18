@@ -14,6 +14,8 @@
 */
 
 const Route = use('Route')
+const Helpers = use('Helpers')
 
-use('require-all')(`${use('Helpers').appRoot()}/app/Routes`)
+Route.get('/test', () => ({ greeting: 'Hello world in JSON' }))
+use('require-all')(`${Helpers.appRoot()}/app/Routes`)
 Route.any('*', ({response}) => response.download(Helpers.publicPath('index.html')))
