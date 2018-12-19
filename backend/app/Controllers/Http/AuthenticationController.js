@@ -7,7 +7,7 @@ const Event = use('Event')
 
 class AuthenticationController {
 
-    /**
+	/**
      * 
      * User register
      */
@@ -41,7 +41,7 @@ class AuthenticationController {
 			return response.status(404).json({ message: 'email or password is invalid', error })
 		}
 
-		if (!User.verified) {
+		if (!user.verified) {
 			return response.status(404).json({ message: 'your account has not yet activated, please confirm your email' })
 		}
 		data.user = user
@@ -59,7 +59,7 @@ class AuthenticationController {
 			data = await auth.newRefreshToken().generateForRefreshToken(request.input('refresh_token'))
 			data.user = await auth.user
 		} catch (e) {
-			return response.status(404).json({ message: 'user not existent', error })
+			return response.status(404).json({ message: 'user not existent', e})
 		}
 		return response.status(201).json({data})
 	}
