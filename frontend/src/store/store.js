@@ -23,10 +23,10 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    register(context, user) {
+    register(context, { user }) {
       return new Promise((resolve, reject) => {
         axios
-          .post("/signup", {
+          .post("/auth/signup", {
             name: user.name,
             email: user.email,
             password: user.password
@@ -35,29 +35,29 @@ export const store = new Vuex.Store({
             resolve(response);
           })
           .catch(error => {
+            console.log(error.response);
             reject(error);
           });
       });
     },
-    signin(context, user) {
-      return new Promise((resolve, reject) => {
-        axios
-          .post("/login", {
-            username: user.email,
-            password: user.password
-          })
-          .then(response => {
-            const token = response.data.access_token;
-
-            localStorage.setItem("access_token", token);
-            context.commit("retrieveToken", token);
-            resolve(response);
-          })
-          .catch(error => {
-            console.log(error);
-            reject(error);
-          });
-      });
+    async signin(context, { user }) {
+      console.log(user.email);
+      try {
+        const response = await axios.post("/auth/signin", {
+          email: user.email,
+          password: user.password
+        });
+        const token = response.data.access_token;
+        localStorage.setItem("access_token", token);
+        localStorage.setItem("user", response.data.user);
+        context.commit("retrieveToken", token);
+        console.log("sig");
+        console.log(response.data);
+        return response;
+      } catch (e) {
+        console.log(e.response);
+        throw e.response;
+      }
     },
     signout(context) {
       axios.defaults.headers.common["Authorization"] =
@@ -66,7 +66,7 @@ export const store = new Vuex.Store({
       if (context.getters.loggedIn) {
         return new Promise((resolve, reject) => {
           axios
-            .post("/signout")
+            .post("/auth/signout")
             .then(response => {
               localStorage.removeItem("access_token");
               context.commit("destroyToken");

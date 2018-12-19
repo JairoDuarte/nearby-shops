@@ -6,6 +6,21 @@ import { store } from "./store/store";
 
 Vue.config.productionTip = false;
 Vue.use(Argon);
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.loggedIn) {
+      next({
+        name: "signin"
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
 new Vue({
   router,
   store,

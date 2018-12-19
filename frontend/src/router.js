@@ -4,6 +4,7 @@ import Header from "./layout/AppHeader";
 import Starter from "./views/Starter";
 import AppFooter from "./layout/AppFooter";
 import ShopList from "./layout/ShopList";
+import Signin from "./layout/auth/Signin";
 Vue.use(Router);
 
 export default new Router({
@@ -14,10 +15,10 @@ export default new Router({
       name: "home",
       components: {
         header: Header,
-        default: Starter
+        default: ShopList
       },
       meta: {
-        requiresVisitor: true
+        requiresAuth: true
       }
     },
     {
@@ -25,21 +26,7 @@ export default new Router({
       name: "signin",
       components: {
         header: Header,
-        default: Starter
-      },
-      meta: {
-        requiresVisitor: true
-      }
-    },
-    {
-      path: "/signup",
-      name: "signup",
-      components: {
-        header: Header,
-        default: AppFooter
-      },
-      meta: {
-        requiresVisitor: true
+        default: Signin
       }
     },
     {
@@ -55,6 +42,9 @@ export default new Router({
       components: {
         header: Header,
         default: ShopList
+      },
+      meta: {
+        requiresAuth: true
       }
     }
   ]
