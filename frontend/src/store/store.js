@@ -7,7 +7,8 @@ axios.defaults.baseURL = "http://localhost:3000/api/";
 
 export const store = new Vuex.Store({
   state: {
-    token: localStorage.getItem("access_token") || null
+    token: localStorage.getItem("access_token") || null,
+    user: JSON.parse(JSON.stringify(localStorage.getItem("user"))) || null
   },
   getters: {
     loggedIn(state) {
@@ -18,8 +19,14 @@ export const store = new Vuex.Store({
     retrieveToken(state, token) {
       state.token = token;
     },
+    retrieveUser(state, user) {
+      state.user = user;
+    },
     destroyToken(state) {
       state.token = null;
+    },
+    destroyUser(state) {
+      state.user = null;
     }
   },
   actions: {
@@ -47,13 +54,13 @@ export const store = new Vuex.Store({
           email: user.email,
           password: user.password
         });
-        const token = response.data.access_token;
-        localStorage.setItem("access_token", token);
-        localStorage.setItem("user", response.data.user);
-        context.commit("retrieveToken", token);
-        console.log("sig");
-        console.log(response.data);
-        return response;
+        const data = response.data.data;
+        localStorage.setItem("access_token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        context.commit("retrieveToken", data.token);
+        context.commit("retrieveUser", data.user);
+
+        return data;
       } catch (e) {
         console.log(e.response);
         throw e.response;
@@ -66,15 +73,20 @@ export const store = new Vuex.Store({
       if (context.getters.loggedIn) {
         return new Promise((resolve, reject) => {
           axios
-            .post("/auth/signout")
+            .post("/auth/signout", { refreshToken: context.state.token })
             .then(response => {
               localStorage.removeItem("access_token");
+              localStorage.removeItem("user");
               context.commit("destroyToken");
+              context.commit("destroyUser");
               resolve(response);
             })
             .catch(error => {
               localStorage.removeItem("access_token");
               context.commit("destroyToken");
+              localStorage.removeItem("user");
+              context.commit("destroyUser");
+
               reject(error);
             });
         });
