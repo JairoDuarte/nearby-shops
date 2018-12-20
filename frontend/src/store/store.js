@@ -8,7 +8,9 @@ axios.defaults.baseURL = "http://localhost:3000/api/";
 export const store = new Vuex.Store({
   state: {
     token: localStorage.getItem("access_token") || null,
-    user: JSON.parse(JSON.stringify(localStorage.getItem("user"))) || null
+    user: JSON.parse(JSON.stringify(localStorage.getItem("user"))) || null,
+    position:
+      JSON.parse(JSON.stringify(localStorage.getItem("position"))) || null
   },
   getters: {
     loggedIn(state) {
@@ -21,6 +23,9 @@ export const store = new Vuex.Store({
     },
     retrieveUser(state, user) {
       state.user = user;
+    },
+    retrievePosition(state, position) {
+      state.position = position;
     },
     destroyToken(state) {
       state.token = null;
@@ -59,7 +64,7 @@ export const store = new Vuex.Store({
         localStorage.setItem("user", JSON.stringify(data.user));
         context.commit("retrieveToken", data.token);
         context.commit("retrieveUser", data.user);
-
+        console.log(context.state.position);
         return data;
       } catch (e) {
         console.log(e.response);
