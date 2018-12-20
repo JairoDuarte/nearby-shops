@@ -80,6 +80,6 @@ module.exports = {
 		token: 'App/Models/Token',
 		uid: 'username',
 		password: '',
-		expiry: '30d'
+		expiry: '5d'
 	}
 }

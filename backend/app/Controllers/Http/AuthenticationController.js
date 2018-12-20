@@ -69,14 +69,14 @@ class AuthenticationController {
      * User logout
      */
 	async signout ({ request, response, auth }) {
-		const refreshToken = request.input('refreshToken');
-        if(!refreshToken){
-            return response.status(404).send(`Refresh Token missing`);
-        }
+		const refreshToken = request.input('refreshToken')
+		if(!refreshToken){
+			return response.status(404).send('Refresh Token missing')
+		}
 
-        await auth
-          .authenticator('jwt')
-          .revokeTokens([refreshToken], true)
+		await auth
+			.authenticator('jwt')
+			.revokeTokens([refreshToken], true)
 
 		return response.status(200).send('success')
 	}

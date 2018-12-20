@@ -26,6 +26,7 @@
     "@adonisjs/mail": "^3.0.5",
     "@adonisjs/validator": "^5.0.3",
     "@adonisjs/vow": "^1.0.15",
+    "@google/maps": "^0.5.5",
     "cloudinary": "^1.11.0",
     "lucid-mongo": "^3.0.0",
     "nanoid": "^1.0.7"
