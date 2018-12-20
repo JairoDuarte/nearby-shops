@@ -163,7 +163,6 @@ export default {
       return re.test(email);
     },
     forceRerender() {
-      // Remove my-component from the DOM
       this.renderComponent.status = !this.renderComponent.status;
     },
     async signin() {
@@ -174,7 +173,9 @@ export default {
         this.user.password.length > 7
       ) {
         try {
-          let res = await this.$store.dispatch("signin", { user: this.user });
+          let response = await this.$store.dispatch("signin", {
+            user: this.user
+          });
           this.$router.push({ name: "home" });
         } catch (e) {
           this.errors.push(e.data.message);

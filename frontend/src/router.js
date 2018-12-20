@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Header from "./layout/AppHeader";
-import Starter from "./views/Starter";
-import AppFooter from "./layout/AppFooter";
 import ShopList from "./layout/ShopList";
 import Signin from "./layout/auth/Signin";
 Vue.use(Router);
