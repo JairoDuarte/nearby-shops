@@ -8,12 +8,12 @@
                   @title-click="titleclick">
       <ul class="navbar-nav ml-lg-auto">
         <li class="nav-item">
-            <router-link class="nav-link" :to="{name: 'prefered' }">My prefered Shops
+            <router-link v-if="loggedIn" class="nav-link" :to="{name: 'prefered' }">My preferred Shops
                 <span class="sr-only">(current)</span> 
             </router-link>
         </li>
         <li class="nav-item" @click="signout">
-            <router-link class="nav-link" :to="{name: 'signin' }">Sign out </router-link>
+            <router-link v-if="loggedIn" class="nav-link" :to="{name: 'signin' }">Sign out </router-link>
         </li>
     </ul>
 </base-nav>
@@ -34,6 +34,11 @@ export default {
       this.$store.dispatch("signout").then(response => {
         this.$router.push({ name: "signin" });
       });
+    }
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.loggedIn
     }
   },
   data() {
