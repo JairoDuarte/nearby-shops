@@ -3,6 +3,6 @@ Route.group('authentification', () => {
 	Route.post('/signin', 'AuthenticationController.signin').validator('UserLogin')
 	Route.post('/signup', 'AuthenticationController.signup').validator('UserRegister')
 	Route.get('/sendverification', 'AuthenticationController.sendVerification')
-	Route.post('/signout', 'AuthenticationController.signout')
+	Route.post('/signout', 'AuthenticationController.signout').middleware(['auth:jwt'])
 }).prefix('/api/auth')
 Route.get('auth/verify', 'AuthenticationController.verify').as('verification')
