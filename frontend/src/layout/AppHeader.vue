@@ -12,8 +12,8 @@
                 <span class="sr-only">(current)</span> 
             </router-link>
         </li>
-        <li class="nav-item">
-            <router-link class="nav-link" :to="{name: 'signout' }">Sign out </router-link>
+        <li class="nav-item" @click="signout">
+            <router-link class="nav-link" :to="{name: 'signin' }">Sign out </router-link>
         </li>
     </ul>
 </base-nav>
@@ -29,6 +29,11 @@ export default {
   methods: {
     titleclick() {
       this.$router.push({ name: "home" });
+    },
+    signout() {
+      this.$store.dispatch("signout").then(response => {
+        this.$router.push({ name: "signin" });
+      });
     }
   },
   data() {
