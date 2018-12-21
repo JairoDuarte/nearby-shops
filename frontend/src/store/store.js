@@ -9,8 +9,7 @@ export const store = new Vuex.Store({
   state: {
     token: localStorage.getItem("access_token") || null,
     user: JSON.parse(JSON.stringify(localStorage.getItem("user"))) || null,
-    position:
-      JSON.parse(JSON.stringify(localStorage.getItem("position"))) || null,
+    position: {},
     shops:[],
     likedshops:[]
   },
@@ -69,7 +68,6 @@ export const store = new Vuex.Store({
     },
     retrieveShops(context) {
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
-      console.log(context.state.position.latitude);
       axios.get(`/shops/${context.state.position.latitude}/${context.state.position.longitude}`)
         .then(response => {
           context.commit('retrieveShops', response.data.shops)
