@@ -11,11 +11,11 @@
                                     <img v-if="!shop.photos" :src="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`" id="" alt="Shop Image" class="" style="width:100%">
                                     
                                     <p class="description mt-3">{{shop.vicinity}}</p>
-                                    <base-button tag="a" href="#" type="warning" class="mt-4">
+                                    <base-button @click="dislikeShop(shop.id)" tag="a" href="#"  type="warning" class="mt-4">
                                         Dislike 
                                     </base-button>
                                    
-                                     <base-button tag="a" href="#" type="success" class="mt-4">
+                                     <base-button @click="likeShop(shop.id)" tag="a" href="#" type="success" class="mt-4">
                                         Like 
                                     </base-button>
                                 </card>
@@ -166,27 +166,33 @@ export default {
             filePath: "../Home/img/concerto.jpg"
           }
         }
-      ],
+      ]
     };
   },
   methods: {
     modalshow() {
       this.active = !this.active;
     },
+    likeShop(id) {
+      this.$store.dispatch("likeShop", id);
+    },
+    dislikeShop(id) {
+      this.$store.dispatch("dislikeShop", id);
+    },
     geolocation(position) {
       const _position = {};
       _position.latitude = position.coords.latitude;
       _position.longitude = position.coords.longitude;
       this.$store.commit("retrievePosition", _position);
-      this.$store.dispatch('retrieveShops')
-   }
+      this.$store.dispatch("retrieveShops");
+    }
   },
-   created() {
-     navigator.geolocation.getCurrentPosition(this.geolocation);
+  created() {
+    navigator.geolocation.getCurrentPosition(this.geolocation);
   },
   computed: {
-   filteredShops() {
-      return this.$store.getters.filteredShops
+    filteredShops() {
+      return this.$store.getters.filteredShops;
     }
   }
 };
@@ -196,10 +202,10 @@ export default {
 .shop {
   padding-top: 2rem;
 }
-#card{
+#card {
   width: 100%;
-    height: 15vw;
-    height: 15rem;
-    object-fit: cover;
+  height: 15vw;
+  height: 15rem;
+  object-fit: cover;
 }
 </style>
