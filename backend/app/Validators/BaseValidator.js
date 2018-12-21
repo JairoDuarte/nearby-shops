@@ -8,7 +8,7 @@ class BaseValidator {
 				error: errorMessages
 			})
 		}
-
+		console.log(errorMessages)
 		request.withAll().andWith({ errors: errorMessages }).flash()
 		return response.redirect('back')
 	}
