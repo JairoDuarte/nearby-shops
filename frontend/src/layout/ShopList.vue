@@ -4,11 +4,13 @@
                 <div class="row justify-content-center">
                     
                         <div class="row row-grid">
-                            <div v-for="shop in shops" :key="shop._id"  class="col-lg-3 shop col-md-3 col-sm-3 col-xs-12">
+                            <div v-for="shop in filteredShops" :key="shop.id"  class="col-lg-3 card-group shop col-md-3 col-sm-3 col-xs-12">
                                 <card class="border-0" hover shadow body-classes="py-2">
                                     <h6 class="text-primary text-uppercase">{{shop.name}}</h6>
-                                    <img src="img/brand/zara.jpg" alt="Avatar" style="width:100%">
-                                    <p class="description mt-3">{{shop.description}}</p>
+                                    <img v-if="shop.photos" :src="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${shop.photos[0].photo_reference}&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`" id="" alt="Shop Image" class="" style="width:100%">
+                                    <img v-if="!shop.photos" :src="`https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`" id="" alt="Shop Image" class="" style="width:100%">
+                                    
+                                    <p class="description mt-3">{{shop.vicinity}}</p>
                                     <base-button tag="a" href="#" type="warning" class="mt-4">
                                         Dislike 
                                     </base-button>
@@ -165,29 +167,36 @@ export default {
           }
         }
       ],
-      activeItem: "todos",
-      active: true,
-      query: ""
     };
   },
   methods: {
     modalshow() {
       this.active = !this.active;
     },
-    isActive: function(menuItem) {
-      return this.activeItem === menuItem;
-    },
-    setActive: function(menuItem) {
-      this.activeItem = menuItem; // no need for Vue.set()
+    geolocation(position) {
+      const _position = {};
+      _position.latitude = position.coords.latitude;
+      _position.longitude = position.coords.longitude;
+      this.$store.commit("retrievePosition", _position);
+      this.$store.dispatch('retrieveShops')
+      console.log(_position);
+      // https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CmRaAAAA6lG7YOtVnOgAurljGshkjB4pGvcO9DGOXRqKtPc681qptm4KmPMUPixiZeWNzQIuOHYwZK2h6r3sUykgyLwnt41unrTWTTEXyCREiiSL07PQhIZaXjd2UZhaPiheXSclEhDbpRFKWug09F2fqXuliNw8GhQEWgSMLvxc5xKmtTngL6LzM6jukA&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI
     }
   },
+  beforeMount() {
+    console.log('mounte');
+
+    //navigator.geolocation.getCurrentPosition(this.geolocation);
+
+  },
+   created() {
+     console.log('create');
+     navigator.geolocation.getCurrentPosition(this.geolocation);
+    
+  },
   computed: {
-    search: function() {
-      var query = this.query;
-      var categoria = this.activeItem;
-      return this.eventos.filter(function(item) {
-        return item.name.includes(query) && item.categoria === categoria;
-      });
+   filteredShops() {
+      return this.$store.getters.filteredShops
     }
   }
 };
@@ -196,5 +205,11 @@ export default {
 <style>
 .shop {
   padding-top: 2rem;
+}
+#card{
+  width: 100%;
+    height: 15vw;
+    height: 15rem;
+    object-fit: cover;
 }
 </style>

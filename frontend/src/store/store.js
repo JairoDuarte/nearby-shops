@@ -10,11 +10,23 @@ export const store = new Vuex.Store({
     token: localStorage.getItem("access_token") || null,
     user: JSON.parse(JSON.stringify(localStorage.getItem("user"))) || null,
     position:
-      JSON.parse(JSON.stringify(localStorage.getItem("position"))) || null
+      JSON.parse(JSON.stringify(localStorage.getItem("position"))) || null,
+    shops:[],
+    likedshops:[]
   },
   getters: {
     loggedIn(state) {
       return state.token !== null;
+    },
+    filteredShops(state) {
+      if (state.likedshops.length > 0) {
+        let shops = state.shops.filter(shop => !state.likedshops.some(s=>s.name == shop.name))
+        return shops
+      }
+      return state.shops
+    },
+    preferredShops(state) {
+      return state.likedshops;
     }
   },
   mutations: {
@@ -29,6 +41,9 @@ export const store = new Vuex.Store({
     },
     destroyToken(state) {
       state.token = null;
+    },
+    retrieveShops(state, shops) {
+      state.shops = shops
     },
     destroyUser(state) {
       state.user = null;
@@ -51,6 +66,17 @@ export const store = new Vuex.Store({
             reject(error);
           });
       });
+    },
+    retrieveShops(context) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
+      console.log(context.state.position.latitude);
+      axios.get(`/shops/${context.state.position.latitude}/${context.state.position.longitude}`)
+        .then(response => {
+          context.commit('retrieveShops', response.data.shops)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     },
     async signin(context, { user }) {
       console.log(user.email);
