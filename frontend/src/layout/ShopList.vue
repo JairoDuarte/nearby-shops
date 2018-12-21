@@ -179,20 +179,10 @@ export default {
       _position.longitude = position.coords.longitude;
       this.$store.commit("retrievePosition", _position);
       this.$store.dispatch('retrieveShops')
-      console.log(_position);
-      // https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CmRaAAAA6lG7YOtVnOgAurljGshkjB4pGvcO9DGOXRqKtPc681qptm4KmPMUPixiZeWNzQIuOHYwZK2h6r3sUykgyLwnt41unrTWTTEXyCREiiSL07PQhIZaXjd2UZhaPiheXSclEhDbpRFKWug09F2fqXuliNw8GhQEWgSMLvxc5xKmtTngL6LzM6jukA&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI
-    }
-  },
-  beforeMount() {
-    console.log('mounte');
-
-    //navigator.geolocation.getCurrentPosition(this.geolocation);
-
+   }
   },
    created() {
-     console.log('create');
      navigator.geolocation.getCurrentPosition(this.geolocation);
-    
   },
   computed: {
    filteredShops() {
