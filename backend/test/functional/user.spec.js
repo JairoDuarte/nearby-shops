@@ -16,6 +16,16 @@ const Shop = use('App/Models/Shop')
 	})
 	afterEach(async () => {
 		await User.query().delete()
+    })
+    test('Get user, return all information about user', async ({ client, assert }) => {
+		let user = await User.first()
+		const response = await client
+			.get('api/users/me')
+			.loginVia(user, 'jwt')
+			.accept('json')
+			.end()
+		response.assertStatus(200)
+		assert.equal(response.body.user.name,'Teste')
 	})
 	test('User add like shop', async ({ client, assert }) => {
 		let user = await User.first()
