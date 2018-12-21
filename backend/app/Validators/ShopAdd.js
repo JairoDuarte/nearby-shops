@@ -7,7 +7,7 @@ class Shop extends BaseValidator {
 		return {
 			name: 'required',
 			address: 'required',
-			photo:'required'
+			photos:'required'
 		}
 	}
 }

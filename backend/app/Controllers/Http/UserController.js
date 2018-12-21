@@ -8,15 +8,27 @@ class UserController {
 		user.dislikesShops = user.dislikesShops == undefined ? [] : user.dislikesShops 
 		user.likesShops = user.likesShops == undefined ? [] : user.likesShops
 		return response.status(200).json({ user })
-	}
+    }
+    async getPreferredShops ({ response, auth }) {
+        const user = auth.user
+        let shops = await user.likesShops().fetch()
+		shops = shops == undefined ? [] : shops
+		return response.status(200).json({ likesShops:shops })
+    }
+    async getDislikeShops ({ response, auth }) {
+        const user = auth.user
+        let shops = await user.dislikesShops().fetch()
+		shops = shops == undefined ? [] : shops
+		return response.status(200).json({ dislikesShops:shops })
+    }
 
 	/**
-     * added like shop by user in list of preferred shops  
      * 
+     * add a specific shop into the preferred shops of current user
      */
 	async addLikeShop ({ request, response, auth }) {
 		let user = auth.user
-		let shop = new Shop(request.only(['id','name','photo' ,'address']))
+		let shop = new Shop(request.only(['id','name','photos' ,'address']))
 		try {
 			await user.likesShops().save(shop)
 		} catch (error) {
@@ -31,7 +43,7 @@ class UserController {
      */
 	async addDislikeShop ({ request, response, auth }) {
 		let user = auth.user
-		let shop = new Shop(request.only(['id','name','photo','address']))
+		let shop = new Shop(request.only(['id','name','photos','address']))
        
 		try {
 			await user.dislikesShops().save(shop)
