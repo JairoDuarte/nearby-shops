@@ -10,8 +10,8 @@ export const store = new Vuex.Store({
     token: localStorage.getItem("access_token") || null,
     user: JSON.parse(JSON.stringify(localStorage.getItem("user"))) || null,
     position: {},
-    shops:[],
-    likedshops:[]
+    shops: [],
+    likedshops: []
   },
   getters: {
     loggedIn(state) {
@@ -19,10 +19,15 @@ export const store = new Vuex.Store({
     },
     filteredShops(state) {
       if (state.likedshops.length > 0) {
-        let shops = state.shops.filter(shop => !state.likedshops.some(s=>s.name == shop.name))
-        return shops
+        let shops = state.shops.filter(
+          shop => !state.likedshops.some(s => s.name == shop.name)
+        );
+        return shops;
       }
-      return state.shops
+      return state.shops;
+    },
+    shopById: (state) => (id) => {
+      return state.shops.find(item => item.id == id);
     },
     preferredShops(state) {
       return state.likedshops;
@@ -42,7 +47,10 @@ export const store = new Vuex.Store({
       state.token = null;
     },
     retrieveShops(state, shops) {
-      state.shops = shops
+      state.shops = shops;
+    },
+    retrievePreferredShops(state, shops) {
+      state.likedshops = shops;
     },
     destroyUser(state) {
       state.user = null;
@@ -67,14 +75,20 @@ export const store = new Vuex.Store({
       });
     },
     retrieveShops(context) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + context.state.token
-      axios.get(`/shops/${context.state.position.latitude}/${context.state.position.longitude}`)
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + context.state.token;
+      axios
+        .get(
+          `/shops/${context.state.position.latitude}/${
+            context.state.position.longitude
+          }`
+        )
         .then(response => {
-          context.commit('retrieveShops', response.data.shops)
+          context.commit("retrieveShops", response.data.shops);
         })
         .catch(error => {
-          console.log(error)
-        })
+          console.log(error);
+        });
     },
     async signin(context, { user }) {
       console.log(user.email);
@@ -120,6 +134,43 @@ export const store = new Vuex.Store({
             });
         });
       }
+    },
+    likeShop(context, id) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + context.state.token;
+      let shop = context.getters.shopById(id);
+      shop.photos = shop.photos ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${shop.photos[0].photo_reference}&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI` : `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`
+      axios
+        .post("/users/addlike", {
+          id: shop.id,
+          name: shop.name,
+          photos: shop.photos,
+          address: shop.vicinity
+        })
+        .then(response => {
+          context.commit("retrievePreferredShops", response.data.likesShops);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
+    dislikeShop(context, id) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + context.state.token;
+      let shop = context.getters.shopById(id);
+      axios
+        .post("/users/adddislike", {
+          id: shop.id,
+          name: shop.name,
+          photos: shop.photos,
+          address: shop.vicinity
+        })
+        .then(response => {
+          context.commit("retrievePreferredShops", response.data.dislikesShops);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 });
