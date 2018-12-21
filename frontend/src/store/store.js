@@ -8,10 +8,11 @@ axios.defaults.baseURL = "http://localhost:3000/api/";
 export const store = new Vuex.Store({
   state: {
     token: localStorage.getItem("access_token") || null,
-    user: JSON.parse(JSON.stringify(localStorage.getItem("user"))) || null,
+    user: {},
     position: {},
     shops: [],
-    likedshops: []
+    likedshops: [],
+    dislikeshop: []
   },
   getters: {
     loggedIn(state) {
@@ -26,7 +27,7 @@ export const store = new Vuex.Store({
       }
       return state.shops;
     },
-    shopById: (state) => (id) => {
+    shopById: state => id => {
       return state.shops.find(item => item.id == id);
     },
     preferredShops(state) {
@@ -51,6 +52,9 @@ export const store = new Vuex.Store({
     },
     retrievePreferredShops(state, shops) {
       state.likedshops = shops;
+    },
+    retrieveDislikeShops(state, shops) {
+      state.dislikeshop = shops;
     },
     destroyUser(state) {
       state.user = null;
@@ -85,6 +89,30 @@ export const store = new Vuex.Store({
         )
         .then(response => {
           context.commit("retrieveShops", response.data.shops);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    retrievePreferred(context) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + context.state.token;
+      axios
+        .get(`/users/likeshops`)
+        .then(response => {
+          context.commit("retrievePreferredShops", response.data.likesShops);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    retrieveDislike(context) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + context.state.token;
+      axios
+        .get(`/users/dislikeshops`)
+        .then(response => {
+          context.commit("retrieveDislikeShops", response.data.dislikesShops);
         })
         .catch(error => {
           console.log(error);
@@ -139,7 +167,11 @@ export const store = new Vuex.Store({
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + context.state.token;
       let shop = context.getters.shopById(id);
-      shop.photos = shop.photos ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${shop.photos[0].photo_reference}&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI` : `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`
+      shop.photos = shop.photos
+        ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
+            shop.photos[0].photo_reference
+          }&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`
+        : `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`;
       axios
         .post("/users/addlike", {
           id: shop.id,
@@ -154,10 +186,28 @@ export const store = new Vuex.Store({
           console.log(error.response);
         });
     },
+    removeShop(context, id) {
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + context.state.token;
+
+      axios
+        .delete(`/users/removeshop/${id}`)
+        .then(response => {
+          context.commit("retrievePreferredShops", response.data.likesShops);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+    },
     dislikeShop(context, id) {
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + context.state.token;
       let shop = context.getters.shopById(id);
+      shop.photos = shop.photos
+        ? `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=${
+            shop.photos[0].photo_reference
+          }&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`
+        : `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference=&key=AIzaSyDLM_8zXIjzv3eGyUkmpEKhcGUDhRzNHvI`;
       axios
         .post("/users/adddislike", {
           id: shop.id,
@@ -166,7 +216,7 @@ export const store = new Vuex.Store({
           address: shop.vicinity
         })
         .then(response => {
-          context.commit("retrievePreferredShops", response.data.dislikesShops);
+          context.commit("retrieveDislikeShops", response.data.dislikesShops);
         })
         .catch(error => {
           console.log(error);
