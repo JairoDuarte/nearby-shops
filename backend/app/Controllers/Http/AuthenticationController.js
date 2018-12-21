@@ -12,7 +12,7 @@ class AuthenticationController {
      * User register
      */
 	async signup ({ request, response }) {
-		let user = new User(request.only(['email', 'password']))
+		let user = new User(request.only(['email', 'password','name']))
 		const verificationToken = crypto.createHash('sha256').update(uuid.v4()).digest('hex')
 		user.merge({verificationToken, verified: false})
 		try {
@@ -37,6 +37,8 @@ class AuthenticationController {
 		try {
 			data = await auth.withRefreshToken().attempt(email, password)
 			user = await User.findBy({ email })
+			user.dislikesShops = user.dislikesShops == undefined ? [] : user.dislikesShops 
+			user.likesShops = user.likesShops == undefined ? [] : user.likesShops
 		} catch (error) {
 			return response.status(404).json({ message: 'email or password is invalid', error })
 		}
