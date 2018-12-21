@@ -28,151 +28,8 @@
 <script>
 export default {
   components: {},
-  data() {
-    return {
-      shops: [
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        },
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        },
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        },
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        },
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        },
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        },
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        },
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        },
-        {
-          _id: "5b3d1fe6bd9ea70388fd12af",
-          name: "festival da Kianda",
-          address: "Boulevard Al Massira Al Khadra, Casablanca 20250",
-          data: "2018-07-04 19:28:38",
-          organizador: "Unitel",
-          categoria: "concerto",
-          description:
-            "Chaîne de mode espagnole proposant sa propre marque de prêt-à-porter, chaussures et accessoires tendance.",
-          banner: {
-            fileName:
-              "c19e2820806511e8975dc9c06b982d60_bg_site_tmj_jan2011.jpg",
-            filePath: "../Home/img/concerto.jpg"
-          }
-        }
-      ]
-    };
-  },
+
   methods: {
-    modalshow() {
-      this.active = !this.active;
-    },
     likeShop(id) {
       this.$store.dispatch("likeShop", id);
     },
@@ -185,6 +42,7 @@ export default {
       _position.longitude = position.coords.longitude;
       this.$store.commit("retrievePosition", _position);
       this.$store.dispatch("retrieveShops");
+      this.$store.dispatch("retrievePreferred");
     }
   },
   created() {
