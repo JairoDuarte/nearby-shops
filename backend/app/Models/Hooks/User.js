@@ -1,8 +1,6 @@
 'use strict'
 
 const Hash = use('Hash')
-const User = use('App/Models/User')
-
 const UserHook = module.exports = {}
 
 /**
@@ -31,12 +29,12 @@ UserHook.hashPassword = async userInstance => {
 UserHook.removeDislikedShop = async userInstance => {
 	let shops = (userInstance.dislikesShops().fetch()).toJSON()
 	for (let i = 0; i < shops.length; i++) {
-		const shop = shops[i];
+		const shop = shops[i]
 		let time = new Date()
 		let timeCreated = new Date(shop.created_at)
 		let timeNotDisplayed = ((time - timeCreated)/1000)/60
-		console.log(shop.name + ' time: '+timeNotDisplayed);
-		if (timeNotDisplayed >= 2) {
+		console.log(shop.name + ' time: '+timeNotDisplayed)
+		if (timeNotDisplayed >= 120) {
 			await userInstance.dislikesShops().delete(shop._id)
 			break
 		}
