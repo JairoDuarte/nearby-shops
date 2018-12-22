@@ -3,31 +3,39 @@
 const Shop = use('App/Models/Shop')
 class UserController {
 
+	/**
+	 * return all information about user
+	 */
 	async me ({ response, auth }) {
 		const user = auth.user
 		user.dislikesShops = user.dislikesShops == undefined ? [] : user.dislikesShops 
 		user.likesShops = user.likesShops == undefined ? [] : user.likesShops
 		return response.status(200).json({ user })
-    }
-    async getPreferredShops ({ response, auth }) {
-        const user = auth.user
-        let shops = await user.likesShops().fetch()
+	}
+	/**
+	 * 
+	 * returns a list of the preferred shops of the current user
+	 */
+	async getPreferredShops ({ response, auth }) {
+		const user = auth.user
+		let shops = await user.likesShops().fetch()
 		shops = shops == undefined ? [] : shops
-		//shops = shops.toJSON()
-		//shops = shops.find(s=>s.name == 'World Fashion')
-		//console.log(shops);
 		return response.status(200).json({ likesShops:shops })
-    }
-    async getDislikeShops ({ response, auth }) {
-        const user = auth.user
-        let shops = await user.dislikesShops().fetch()
+	}
+	/**
+	 * returns a list of the disliked shops of the current user
+	 * 
+	 */
+	async getDislikeShops ({ response, auth }) {
+		const user = auth.user
+		let shops = await user.dislikesShops().fetch()
 		shops = shops == undefined ? [] : shops
 		return response.status(200).json({ dislikesShops:shops })
-    }
+	}
 
 	/**
      * 
-     * add a specific shop into the preferred shops of current user
+     * add a specific shop into the preferred shops list of user
      */
 	async addLikeShop ({ request, response, auth }) {
 		let user = auth.user
@@ -59,7 +67,7 @@ class UserController {
 	}
 	/**
      * 
-     * remove shop in dislike ou preferred list 
+     * remove a shop from preferred shops 
      */
 	async removeShop ({ response, auth,params }) {
 		let user = auth.user
