@@ -43,6 +43,7 @@ export default {
       this.$store.commit("retrievePosition", _position);
       this.$store.dispatch("retrieveShops");
       this.$store.dispatch("retrievePreferred");
+      this.$store.dispatch("retrieveDislike");
     }
   },
   created() {
