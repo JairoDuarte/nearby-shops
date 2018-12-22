@@ -13,6 +13,9 @@ class UserController {
         const user = auth.user
         let shops = await user.likesShops().fetch()
 		shops = shops == undefined ? [] : shops
+		//shops = shops.toJSON()
+		//shops = shops.find(s=>s.name == 'World Fashion')
+		//console.log(shops);
 		return response.status(200).json({ likesShops:shops })
     }
     async getDislikeShops ({ response, auth }) {
@@ -44,6 +47,7 @@ class UserController {
 	async addDislikeShop ({ request, response, auth }) {
 		let user = auth.user
 		let shop = new Shop(request.only(['id','name','photos','address']))
+		shop.created_at = new Date()
        
 		try {
 			await user.dislikesShops().save(shop)
