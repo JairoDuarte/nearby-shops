@@ -16,8 +16,8 @@
 const Env = use('Env')
 
 module.exports = {
-  ally: {
-    /*
+	ally: {
+		/*
     |--------------------------------------------------------------------------
     | Facebook Configuration
     |--------------------------------------------------------------------------
@@ -26,13 +26,13 @@ module.exports = {
     | console. https://developers.facebook.com/apps
     |
     */
-    facebook: {
-      clientId: Env.get('FB_CLIENT_ID'),
-      clientSecret: Env.get('FB_CLIENT_SECRET'),
-      redirectUri: `${Env.get('APP_URL')}/api/usuario/authenticated/facebook`
-    },
+		facebook: {
+			clientId: Env.get('FB_CLIENT_ID'),
+			clientSecret: Env.get('FB_CLIENT_SECRET'),
+			redirectUri: `${Env.get('APP_URL')}/api/usuario/authenticated/facebook`
+		},
 
-    /*
+		/*
     |--------------------------------------------------------------------------
     | Google Configuration
     |--------------------------------------------------------------------------
@@ -41,13 +41,13 @@ module.exports = {
     | console. https://console.developers.google.com
     |
     */
-    google: {
-      clientId: Env.get('GOOGLE_CLIENT_ID'),
-      clientSecret: Env.get('GOOGLE_CLIENT_SECRET'),
-      redirectUri: `${Env.get('APP_URL')}/api/usuario/authenticated/google`
-    },
+		google: {
+			clientId: Env.get('GOOGLE_CLIENT_ID'),
+			clientSecret: Env.get('GOOGLE_CLIENT_SECRET'),
+			redirectUri: `${Env.get('APP_URL')}/api/usuario/authenticated/google`
+		},
 
-    /*
+		/*
     |--------------------------------------------------------------------------
     | Github Configuration
     |--------------------------------------------------------------------------
@@ -56,13 +56,13 @@ module.exports = {
     | console. https://github.com/settings/developers
     |
     */
-    github: {
-      clientId: Env.get('GITHUB_CLIENT_ID'),
-      clientSecret: Env.get('GITHUB_CLIENT_SECRET'),
-      redirectUri: `${Env.get('APP_URL')}/authenticated/github`
-    },
+		github: {
+			clientId: Env.get('GITHUB_CLIENT_ID'),
+			clientSecret: Env.get('GITHUB_CLIENT_SECRET'),
+			redirectUri: `${Env.get('APP_URL')}/authenticated/github`
+		},
 
-    /*
+		/*
      |--------------------------------------------------------------------------
      | Instagram Configuration
      |--------------------------------------------------------------------------
@@ -71,13 +71,13 @@ module.exports = {
      | console. https://www.instagram.com/developer/
      |
      */
-    instagram: {
-      clientId: Env.get('INSTAGRAM_CLIENT_ID'),
-      clientSecret: Env.get('INSTAGRAM_CLIENT_SECRET'),
-      redirectUri: `${Env.get('APP_URL')}/authenticated/instagram`
-    },
+		instagram: {
+			clientId: Env.get('INSTAGRAM_CLIENT_ID'),
+			clientSecret: Env.get('INSTAGRAM_CLIENT_SECRET'),
+			redirectUri: `${Env.get('APP_URL')}/authenticated/instagram`
+		},
 
-    /*
+		/*
      |--------------------------------------------------------------------------
      | Foursquare Configuration
      |--------------------------------------------------------------------------
@@ -86,10 +86,10 @@ module.exports = {
      | console. https://developer.foursquare.com/
      |
      */
-    foursquare: {
-      clientId: Env.get('FOURSQUARE_ID'),
-      clientSecret: Env.get('FOURSQUARE_SECRET'),
-      redirectUri: `${Env.get('APP_URL')}/authenticated/foursquare`
-    }
-  }
+		foursquare: {
+			clientId: Env.get('FOURSQUARE_ID'),
+			clientSecret: Env.get('FOURSQUARE_SECRET'),
+			redirectUri: `${Env.get('APP_URL')}/authenticated/foursquare`
+		}
+	}
 }

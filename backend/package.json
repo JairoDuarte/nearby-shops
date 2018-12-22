@@ -2,7 +2,7 @@
   "name": "shops",
   "version": "0.0.1",
   "adonis-version": "4.1.0",
-  "description": "shops API server",
+  "description": "Nearby shops API server",
   "scripts": {
     "start": "nodemon server.js",
     "lint": "eslint '**/*.js'",
@@ -26,14 +26,17 @@
     "@adonisjs/mail": "^3.0.5",
     "@adonisjs/validator": "^5.0.3",
     "@adonisjs/vow": "^1.0.15",
+    "@google/maps": "^0.5.5",
     "cloudinary": "^1.11.0",
     "lucid-mongo": "^3.0.0",
     "nanoid": "^1.0.7"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.9.0"
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.1.2"
   },
   "autoload": {
     "App": "./app"

@@ -11,18 +11,18 @@
 |
 */
 const providers = [
-  '@adonisjs/framework/providers/AppProvider',
-  '@adonisjs/auth/providers/AuthProvider',
-  '@adonisjs/bodyparser/providers/BodyParserProvider',
-  '@adonisjs/cors/providers/CorsProvider',
-  '@adonisjs/validator/providers/ValidatorProvider',
-  'lucid-mongo/providers/LucidMongoProvider',
-  '@adonisjs/mail/providers/MailProvider',
-  '@adonisjs/framework/providers/ViewProvider',
-  '@adonisjs/vow/providers/VowProvider',
-  '@adonisjs/drive/providers/DriveProvider',
-  '@adonisjs/framework/providers/ViewProvider',
-  '@adonisjs/ally/providers/AllyProvider'
+	'@adonisjs/framework/providers/AppProvider',
+	'@adonisjs/auth/providers/AuthProvider',
+	'@adonisjs/bodyparser/providers/BodyParserProvider',
+	'@adonisjs/cors/providers/CorsProvider',
+	'@adonisjs/validator/providers/ValidatorProvider',
+	'lucid-mongo/providers/LucidMongoProvider',
+	'@adonisjs/mail/providers/MailProvider',
+	'@adonisjs/framework/providers/ViewProvider',
+	'@adonisjs/vow/providers/VowProvider',
+	'@adonisjs/drive/providers/DriveProvider',
+	'@adonisjs/framework/providers/ViewProvider',
+	'@adonisjs/ally/providers/AllyProvider'
 ]
 
 /*
@@ -35,8 +35,8 @@ const providers = [
 |
 */
 const aceProviders = [
-  'lucid-mongo/providers/MigrationsProvider',
-  '@adonisjs/vow/providers/VowProvider'
+	'lucid-mongo/providers/MigrationsProvider',
+	'@adonisjs/vow/providers/VowProvider'
 ]
 
 /*
