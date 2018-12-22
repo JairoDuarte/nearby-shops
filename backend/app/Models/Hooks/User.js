@@ -1,6 +1,7 @@
 'use strict'
 
 const Hash = use('Hash')
+const User = use('App/Models/User')
 
 const UserHook = module.exports = {}
 
@@ -16,5 +17,28 @@ const UserHook = module.exports = {}
 UserHook.hashPassword = async userInstance => {
 	if (userInstance.password) {
 		userInstance.password = await Hash.make(userInstance.password)
+	}
+}
+/**
+ * hook for delete a shop from disliked shops
+ *
+ * @method
+ *
+ * @param  {Object} userInstance
+ *
+ * @return {void}
+ */
+UserHook.removeDislikedShop = async userInstance => {
+	let shops = (userInstance.dislikesShops().fetch()).toJSON()
+	for (let i = 0; i < shops.length; i++) {
+		const shop = shops[i];
+		let time = new Date()
+		let timeCreated = new Date(shop.created_at)
+		let timeNotDisplayed = ((time - timeCreated)/1000)/60
+		console.log(shop.name + ' time: '+timeNotDisplayed);
+		if (timeNotDisplayed >= 2) {
+			await userInstance.dislikesShops().delete(shop._id)
+			break
+		}
 	}
 }
