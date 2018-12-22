@@ -8,7 +8,7 @@ const googleMaps = require('@google/maps').createClient({
 
 class ShopController {
 
-    	/**
+	/**
      * 
      * User register
      * request in google map shops by user location and 
