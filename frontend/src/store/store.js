@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
     position: {},
     shops: [],
     likedshops: [],
-    dislikeshop: []
+    dislikedshops: []
   },
   getters: {
     loggedIn(state) {
@@ -22,6 +22,9 @@ export const store = new Vuex.Store({
       if (state.likedshops.length > 0) {
         let shops = state.shops.filter(
           shop => !state.likedshops.some(s => s.name == shop.name)
+        );
+        shops = shops.filter(
+          shop => !state.dislikedshops.some(s => s.name == shop.name)
         );
         return shops;
       }
@@ -54,7 +57,7 @@ export const store = new Vuex.Store({
       state.likedshops = shops;
     },
     retrieveDislikeShops(state, shops) {
-      state.dislikeshop = shops;
+      state.dislikedshops = shops;
     },
     destroyUser(state) {
       state.user = null;
@@ -115,7 +118,7 @@ export const store = new Vuex.Store({
           context.commit("retrieveDislikeShops", response.data.dislikesShops);
         })
         .catch(error => {
-          console.log(error);
+          console.log(error.response);
         });
     },
     async signin(context, { user }) {
@@ -219,7 +222,7 @@ export const store = new Vuex.Store({
           context.commit("retrieveDislikeShops", response.data.dislikesShops);
         })
         .catch(error => {
-          console.log(error);
+          console.log(error.response);
         });
     }
   }
