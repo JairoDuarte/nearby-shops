@@ -58,7 +58,10 @@ for the frontend App has the global Architecture of an vue-cli project.
 
 ![Near by shops](https://raw.githack.com/JairoDuarte/nearby-shops/master/img3.png "Near by shops")
 
+
+
 ![Near by shops](https://raw.githack.com/JairoDuarte/nearby-shops/master/img1.png "Near by shops")
+
 
 ![Preferred shops](https://raw.githack.com/JairoDuarte/nearby-shops/master/img2.png "Near by shops")
 
