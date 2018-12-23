@@ -33,7 +33,6 @@ UserHook.removeDislikedShop = async userInstance => {
 		let time = new Date()
 		let timeCreated = new Date(shop.created_at)
 		let timeNotDisplayed = ((time - timeCreated)/1000)/60
-		console.log(shop.name + ' time: '+timeNotDisplayed)
 		if (timeNotDisplayed >= 120) {
 			await userInstance.dislikesShops().delete(shop._id)
 			break
