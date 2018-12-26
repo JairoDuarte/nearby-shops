@@ -9,7 +9,7 @@
                                     <h6 class="text-primary text-uppercase">{{shop.name}}</h6>
                                     <img v-if="shop.photos" :src="`${shop.photos}`" id="" alt="Shop Image" class="" style="width:100%">
                                     
-                                    <p class="description mt-3">{{shop.vicinity}}</p>
+                                    <p class="description mt-3">{{shop.address}}</p>
                                     <base-button @click="removeShop(shop._id)" tag="a" href="#"  type="warning" class="mt-4">
                                         Remove 
                                     </base-button>
