@@ -1,4 +1,4 @@
-# Coding Challenge
+# Nearby-shops
 > The coding challenge is about implementing an app that lists shops nearby, help users to find shops that are near their location **HTML5 Geolocation**. and they can dislike or like shop to add on preferred list and remove them from preferred.
 
 
