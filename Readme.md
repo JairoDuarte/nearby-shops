@@ -38,10 +38,12 @@ The main logic of app is based in [adonisjs](https://adonisjs.com/). The databas
 
 #### Resource components
 
+
+
 | resources | method | description |
 | --------- |--------| ----------- |
-| ```/api/users/signup``` | POST | create a new user passing name, email and password in the body. |
-| ```/api/users/signin``` | POST | login by passing email and password in the body.|
+| ```/api/auth/signup``` | POST | create a new user passing name, email and password in the body. |
+| ```/api/auth/signin``` | POST | login by passing email and password in the body.|
 | ```/api/users/me``` | GET | returns all information about user. |
 | ```/api/users/likeshops``` | GET | returns a list of the preferred shops of the current user. |
 | ```/api/users/dislikeshops``` | GET | returns a list of the disliked shops of the current user. |
@@ -50,6 +52,7 @@ The main logic of app is based in [adonisjs](https://adonisjs.com/). The databas
 | ```/api/users/removeshop/{shopId}/``` | DELETE | remove a shop from preferred shops. |
 | ```/api/shops/{latitude}/{longitude}``` | GET | returns a list of shops sorted by the distance user curent location. |
 
+> To see all ressources run adonis route:list (@adonisjs/cli required)
 
 ``` frontend ```
 
