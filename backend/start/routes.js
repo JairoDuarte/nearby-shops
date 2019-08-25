@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +13,14 @@
 |
 */
 
-const Route = use('Route')
-const Helpers = use('Helpers')
+const Route = use("Route");
+const Helpers = use("Helpers");
 
-const Env = use('Env')
-Route.get('/', () => ({ greeting: 'Nearby Shops API - Coding challenge United Remote' }))
-use('require-all')(`${Helpers.appRoot()}/app/Routes`)
-Route.any('*', ({response}) => response.download(Helpers.publicPath('index.html')))
+const Env = use("Env");
+Route.get("/api/", () => ({
+  greeting: "Nearby Shops API - Coding challenge United Remote"
+}));
+use("require-all")(`${Helpers.appRoot()}/app/Routes`);
+Route.any("*", ({ response }) =>
+  response.download(Helpers.publicPath("index.html"))
+);
